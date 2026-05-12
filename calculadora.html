@@ -1,0 +1,452 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blu:#2563eb;--blu-bg:#eff6ff;--blu-txt:#1e40af;--blu-brd:#bfdbfe;
+  --grn:#16a34a;--grn-bg:#f0fdf4;--grn-txt:#15803d;--grn-brd:#86efac;
+  --amb:#d97706;--amb-bg:#fffbeb;--amb-txt:#92400e;--amb-brd:#fcd34d;
+  --red:#dc2626;--red-bg:#fef2f2;--red-txt:#b91c1c;--red-brd:#fca5a5;
+  --g50:#f8fafc;--g100:#f1f5f9;--g200:#e2e8f0;--g300:#cbd5e1;--g400:#94a3b8;--g500:#64748b;--g700:#334155;--g900:#0f172a;
+  --r:8px;--rl:12px
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--g900);background:#f1f5f9;font-size:14px}
+.wrap{max-width:860px;padding:16px 16px 2.5rem}
+
+/* HEADER */
+.app-hdr{background:var(--blu);color:#fff;padding:18px 22px;border-radius:var(--rl);margin-bottom:18px;display:flex;align-items:center;gap:14px}
+.app-hdr-icon{width:44px;height:44px;background:rgba(255,255,255,.2);border-radius:var(--r);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.app-hdr h1{font-size:17px;font-weight:600;margin:0 0 3px}
+.app-hdr p{font-size:12px;opacity:.8;margin:0}
+
+/* CARDS */
+.card{background:#fff;border:1px solid var(--g200);border-radius:var(--rl);margin-bottom:14px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.card-hdr{display:flex;align-items:center;gap:10px;padding:12px 18px;background:var(--g50);border-bottom:1px solid var(--g200)}
+.card-hdr-title{font-weight:600;font-size:13px;color:var(--g700);flex:1}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--blu);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.card-body{padding:16px 18px}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:580px){.g2,.g3{grid-template-columns:1fr}}
+
+/* FORM ELEMENTS */
+.fgroup{display:flex;flex-direction:column;gap:5px}
+.flabel{font-size:11px;font-weight:600;color:var(--g500);text-transform:uppercase;letter-spacing:.5px}
+select,input[type=date],input[type=number],input[type=text]{
+  border:1.5px solid var(--g300)!important;border-radius:var(--r)!important;
+  padding:8px 10px!important;font-size:13px!important;color:var(--g900)!important;
+  background:var(--g100)!important;width:100%;transition:border-color .15s,background .15s
+}
+select:focus,input:focus{outline:none!important;border-color:var(--blu)!important;background:#fff!important}
+
+/* CALLOUTS */
+.ci{background:var(--blu-bg);color:var(--blu-txt);border:1px solid var(--blu-brd);border-radius:var(--r);padding:10px 12px;font-size:12px;display:flex;gap:9px;align-items:flex-start;line-height:1.5;margin-top:10px}
+.cw{background:var(--amb-bg);color:var(--amb-txt);border:1px solid var(--amb-brd);border-radius:var(--r);padding:10px 12px;font-size:12px;display:flex;gap:9px;align-items:flex-start;line-height:1.5;margin-top:10px}
+.ce{background:var(--red-bg);color:var(--red-txt);border:1px solid var(--red-brd);border-radius:var(--r);padding:10px 12px;font-size:12px;display:flex;gap:9px;align-items:flex-start;line-height:1.5;margin-top:10px}
+.co{background:var(--grn-bg);color:var(--grn-txt);border:1px solid var(--grn-brd);border-radius:var(--r);padding:10px 12px;font-size:12px;display:flex;gap:9px;align-items:flex-start;line-height:1.5;margin-top:10px}
+.ci i,.cw i,.ce i,.co i{flex-shrink:0;margin-top:1px}
+
+/* TOGGLE */
+.tog-row{display:flex;align-items:center;gap:12px;padding:13px 16px;background:var(--g100);border-radius:var(--r);cursor:pointer;border:2px solid var(--g300);transition:border-color .15s,background .15s;margin-top:14px}
+.tog-row:hover{border-color:var(--blu);background:var(--blu-bg)}
+.tog-row.on{border-color:var(--blu);background:var(--blu-bg)}
+.tw{position:relative;width:46px;height:26px;flex-shrink:0}
+.tw input{opacity:0;width:0;height:0;position:absolute}
+.tsl{position:absolute;inset:0;border-radius:26px;transition:.25s;cursor:pointer;background:#94a3b8}
+.tsl:before{content:'';position:absolute;height:20px;width:20px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.25s;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.tw input:checked+.tsl{background:var(--blu)}
+.tw input:checked+.tsl:before{transform:translateX(20px)}
+.tl-wrap-txt{flex:1}
+.tl-wrap-txt strong{display:block;font-size:13px;font-weight:600;color:var(--g700)}
+.tl-wrap-txt span{display:block;font-size:11px;color:var(--g500);margin-top:2px}
+.tog-row.on .tl-wrap-txt strong{color:var(--blu-txt)}
+.tog-row.on .tl-wrap-txt span{color:var(--blu-txt);opacity:.8}
+.chev{font-size:18px;color:var(--g400);transition:transform .25s;flex-shrink:0}
+.chev.open{transform:rotate(180deg)}
+
+/* CONCILIATION PANEL */
+.conc-panel{border:2px solid var(--blu-brd);border-top:none;border-radius:0 0 var(--r) var(--r);padding:14px;display:none;background:var(--blu-bg)}
+
+/* TAGS */
+.ftag,.ftag-a{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:4px 10px;font-size:12px}
+.ftag{background:var(--g100);color:var(--g700);border:1px solid var(--g300)}
+.ftag-a{background:var(--blu-bg);color:var(--blu-txt);border:1px solid var(--blu-brd)}
+.ftag button,.ftag-a button{background:none;border:none;cursor:pointer;color:var(--red-txt);font-size:17px;padding:0;line-height:1;margin-left:2px}
+
+/* CALCULATE BUTTON */
+.btn-calc{width:100%;padding:14px;font-size:15px;font-weight:600;cursor:pointer;border:none!important;background:var(--blu)!important;color:#fff!important;border-radius:var(--rl);margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:9px;transition:opacity .15s,transform .1s;letter-spacing:.2px;box-shadow:0 2px 8px rgba(37,99,235,.35)}
+.btn-calc:hover{opacity:.88}
+.btn-calc:active{transform:scale(.99)}
+
+/* RESULT CARDS */
+.res-card{background:#fff;border:1px solid var(--g200);border-radius:var(--rl);margin-bottom:14px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.res-ban{padding:20px 20px 16px;display:flex;flex-direction:column;gap:4px}
+.res-ban.cad{background:var(--blu);color:#fff}
+.res-ban.pres{background:var(--grn);color:#fff}
+.res-eyebrow{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;opacity:.75}
+.res-date{font-size:23px;font-weight:700;margin:4px 0 2px;line-height:1.2}
+.res-sub{font-size:12px;opacity:.9}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:var(--r);padding:5px 14px;font-size:12px;text-align:center;min-width:64px;color:#fff}
+.chip strong{display:block;font-size:19px;font-weight:700;line-height:1.1}
+.res-body{padding:16px 18px}
+
+/* TIMELINE */
+.tl-bar{display:flex;height:14px;border-radius:6px;overflow:hidden;gap:1px;width:100%;background:var(--g200)}
+.tl-seg{min-width:3px}
+.tl-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--g500);margin-top:4px;flex-wrap:wrap;gap:4px}
+.presc-tl{position:relative;height:30px;border-radius:6px;overflow:hidden;margin:10px 0;background:var(--g200)}
+.p-seg{position:absolute;top:0;height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;white-space:nowrap;padding:0 6px}
+
+/* STEP SEQUENCE */
+.step-seq{border-top:1px solid var(--g200);padding-top:12px;margin-top:4px;display:flex;flex-direction:column}
+.srow{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--g100)}
+.srow:last-child{border-bottom:none}
+.sdot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;margin-top:1px}
+.sn{background:var(--g200);color:var(--g500)}
+.sw{background:var(--amb-bg);color:var(--amb-txt);border:1px solid var(--amb-brd)}
+.sok{background:var(--grn-bg);color:var(--grn-txt);border:1px solid var(--grn-brd)}
+.se{background:var(--red-bg);color:var(--red-txt);border:1px solid var(--red-brd)}
+.srow-body{flex:1;font-size:12px;line-height:1.6;color:var(--g700)}
+.srow-body strong{font-size:13px;font-weight:600;color:var(--g900);display:block;margin-bottom:2px}
+
+/* BADGES */
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;vertical-align:middle;margin-left:4px}
+.bok{background:var(--grn-bg);color:var(--grn-txt);border:1px solid var(--grn-brd)}
+.be{background:var(--red-bg);color:var(--red-txt);border:1px solid var(--red-brd)}
+.bw{background:var(--amb-bg);color:var(--amb-txt);border:1px solid var(--amb-brd)}
+.bn{background:var(--g100);color:var(--g500)}
+
+/* CALENDAR */
+.cal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:10px;margin:12px 0 8px}
+.mcal{border:1px solid var(--g200);border-radius:var(--r);overflow:hidden}
+.mcal-h{background:var(--g50);padding:6px 8px;font-size:12px;font-weight:600;border-bottom:1px solid var(--g200);color:var(--g700)}
+.dg{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--g200);padding:1px}
+.dn{background:var(--g100);text-align:center;padding:3px 0;font-size:10px;font-weight:600;color:var(--g500)}
+.dc{background:#fff;text-align:center;padding:3px 1px;min-height:27px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;color:var(--g700)}
+.dc.wk{background:var(--g50);color:var(--g300)}
+.dc.hab{background:#dcfce7;color:#15803d;font-weight:600}
+.dc.inh{background:#fee2e2;color:#b91c1c}
+.dc.sus{background:#fef3c7;color:#92400e}
+.dc.daq{outline:2px solid var(--blu);outline-offset:-2px;font-weight:700;color:var(--blu)}
+.dc.ddl{background:var(--blu);color:#fff;font-weight:700}
+.dc.oor{opacity:.2}
+.dc .cn{font-size:9px;line-height:1;margin-top:1px}
+.leg{display:flex;flex-wrap:wrap;gap:10px;padding:10px 0 4px;border-top:1px solid var(--g200);margin-top:8px}
+.li{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--g500)}
+.ls{width:13px;height:13px;border-radius:3px;flex-shrink:0}
+
+/* MISC */
+details summary{cursor:pointer;font-size:12px;color:var(--g500);padding:9px 0;list-style:none;display:flex;align-items:center;gap:7px;border-top:1px solid var(--g200);margin-top:6px}
+details summary:hover{color:var(--g700)}
+.btbl{width:100%;font-size:11px;border-collapse:collapse;margin-top:8px}
+.btbl th{background:var(--g50);padding:6px 10px;text-align:left;font-weight:600;border-bottom:1px solid var(--g200);color:var(--g500)}
+.btbl td{padding:5px 10px;border-bottom:1px solid var(--g100);color:var(--g700)}
+.tg{display:inline-block;padding:2px 7px;border-radius:20px;font-size:10px;font-weight:600}
+.th{background:#dcfce7;color:#15803d}
+.ti_{background:#fee2e2;color:#b91c1c}
+.ts_{background:#fef3c7;color:#92400e}
+.td_{background:var(--blu-bg);color:var(--blu-txt)}
+.t0{background:var(--g100);color:var(--g500)}
+.ref-b{background:var(--g50);border:1px solid var(--g200);border-radius:var(--r);padding:12px 14px;font-size:12px;color:var(--g500);line-height:1.6;margin-top:12px}
+.mun-ok{background:var(--grn-bg);color:var(--grn-txt);border:1px solid var(--grn-brd);border-radius:var(--r);padding:8px 12px;font-size:12px;display:flex;gap:7px;align-items:center;margin-top:10px}
+.sep{height:1px;background:var(--g200);margin:12px 0}
+.mt10{margin-top:10px}
+.footer-note{font-size:11px;color:var(--g400);text-align:center;padding-top:.75rem;border-top:1px solid var(--g200)}
+</style>
+
+<h2 class="sr-only">Calculadora de plazos procesales laborales — España</h2>
+<div class="wrap">
+
+<div class="app-hdr">
+  <div class="app-hdr-icon"><i class="ti ti-calendar-due" style="font-size:26px" aria-hidden="true"></i></div>
+  <div>
+    <h1>Calculadora de Plazos Procesales Laborales</h1>
+    <p>LRJS · ET art.59 · LO 1/2025 · LOPJ art.182-184 · Suspensión caducidad / Interrupción prescripción</p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-hdr"><span class="step-num">1</span><span class="card-hdr-title">Tipo de procedimiento</span></div>
+  <div class="card-body">
+    <div class="fgroup">
+      <label class="flabel" for="proc">Modalidad procesal</label>
+      <select id="proc" onchange="onPC()">
+        <option value="">— Seleccione el tipo de procedimiento —</option>
+        <optgroup label="Acción de despido — CADUCIDAD (agosto y navidades hábiles)">
+          <option value="despido">Despido disciplinario / objetivo / colectivo — 20 días hábiles</option>
+          <option value="ext50">Extinción voluntaria art.50 ET — 20 días hábiles</option>
+        </optgroup>
+        <optgroup label="Procesos urgentes — CADUCIDAD (agosto y navidades hábiles)">
+          <option value="msct">Movilidad geográfica / MSCT / ERE suspensión — 20 días hábiles</option>
+          <option value="altamed">Impugnación alta médica — 20 días hábiles</option>
+          <option value="vacac">Vacaciones — 20 días hábiles</option>
+          <option value="tutela">Tutela derechos fundamentales — 20 días hábiles</option>
+          <option value="cc">Conflicto colectivo — 20 días hábiles</option>
+          <option value="conv">Impugnación convenio colectivo — 20 días hábiles</option>
+        </optgroup>
+        <optgroup label="Procedimiento ordinario — CADUCIDAD (agosto inhábil)">
+          <option value="sancion">Impugnación de sanciones laborales — 20 días hábiles</option>
+          <option value="segsoc">Demanda S.S. tras denegación reclamación previa — 30 días hábiles</option>
+        </optgroup>
+        <optgroup label="PRESCRIPCIÓN — días naturales, interrupción">
+          <option value="cantidad">Reclamación de cantidad / indemnización — 1 año natural</option>
+        </optgroup>
+        <optgroup label="Recursos">
+          <option value="supl_a">Suplicación — Anuncio — 5 días hábiles</option>
+          <option value="supl_f">Suplicación — Formalización — 10 días hábiles</option>
+          <option value="casac">Casación unif. doctrina — Preparación — 10 días hábiles</option>
+        </optgroup>
+        <optgroup label="Personalizado"><option value="custom">Plazo personalizado</option></optgroup>
+      </select>
+    </div>
+    <div id="pinfo" class="ci" style="display:none"><i class="ti ti-info-circle" aria-hidden="true"></i><span id="pinfo-t" style="line-height:1.5"></span></div>
+    <div id="cust-c" style="display:none;margin-top:14px">
+      <div class="sep"></div>
+      <div class="g2">
+        <div class="fgroup"><label class="flabel" for="c-d">Número de días</label><input type="number" id="c-d" value="20" min="1" max="730"></div>
+        <div class="fgroup"><label class="flabel" for="c-t">Tipo</label><select id="c-t"><option value="hab">Hábiles</option><option value="nat">Naturales (CC art.5)</option></select></div>
+      </div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:10px">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:#334155"><span class="tw"><input type="checkbox" id="c-ago"><span class="tsl"></span></span>Agosto hábil</label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:#334155"><span class="tw"><input type="checkbox" id="c-nav"><span class="tsl"></span></span>Navidades hábil</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-hdr"><span class="step-num">2</span><span class="card-hdr-title">Juzgado de lo Social — Festivos aplicables</span></div>
+  <div class="card-body">
+    <div class="g3">
+      <div class="fgroup"><label class="flabel" for="ccaa">Comunidad Autónoma</label>
+        <select id="ccaa" onchange="onCCAAChg()">
+          <option value="nac">Solo festivos nacionales</option>
+          <option value="and">Andalucía</option><option value="ara">Aragón</option>
+          <option value="ast">Asturias</option><option value="bal" selected>Illes Balears</option>
+          <option value="can">Canarias</option><option value="ctb">Cantabria</option>
+          <option value="clm">Castilla-La Mancha</option><option value="cyl">Castilla y León</option>
+          <option value="cat">Cataluña</option><option value="ext">Extremadura</option>
+          <option value="gal">Galicia</option><option value="rio">La Rioja</option>
+          <option value="mad">Comunidad de Madrid</option><option value="mur">Región de Murcia</option>
+          <option value="nav">Navarra</option><option value="pvk">País Vasco</option>
+          <option value="val">Comunitat Valenciana</option>
+        </select>
+      </div>
+      <div class="fgroup" style="grid-column:span 2"><label class="flabel" for="mun">Municipio — auto-carga festivos locales</label>
+        <select id="mun" onchange="onMun()"><option value="">— Seleccionar municipio —</option></select>
+      </div>
+    </div>
+    <div id="mun-ok" style="display:none" class="mun-ok"><i class="ti ti-check" aria-hidden="true"></i><span id="mun-ok-t"></span></div>
+    <div class="cw"><i class="ti ti-alert-triangle" aria-hidden="true"></i><span>Festivos de CCAA y municipios <strong>orientativos</strong> (2023-2027). Verifique siempre con el boletín oficial del juzgado destinatario.</span></div>
+    <div class="sep"></div>
+    <div class="fgroup" style="margin-bottom:8px"><label class="flabel">Festivos locales del juzgado (manual)</label></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <input type="date" id="nf-d" style="flex:1;min-width:120px">
+      <input type="text" id="nf-n" placeholder="Descripción" style="flex:2;min-width:130px">
+      <button onclick="addFest()" style="display:flex;align-items:center;gap:5px;flex-shrink:0;background:#fff;border:1.5px solid #cbd5e1;border-radius:8px;padding:8px 12px;font-size:13px;cursor:pointer;color:#334155;transition:.15s" onmouseover="this.style.borderColor='#2563eb'" onmouseout="this.style.borderColor='#cbd5e1'"><i class="ti ti-plus" aria-hidden="true"></i>Añadir</button>
+    </div>
+    <div id="fest-tags" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px"></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-hdr"><span class="step-num">3</span><span class="card-hdr-title">Fechas del cómputo</span></div>
+  <div class="card-body">
+    <div class="g2">
+      <div class="fgroup"><label class="flabel" id="lbl-i">Fecha del hecho generador (dies a quo)</label><input type="date" id="f-ini"></div>
+      <div style="display:flex;align-items:flex-end"><div class="ci" style="margin:0;font-size:11px;flex:1"><i class="ti ti-info-circle" aria-hidden="true"></i><span id="ini-note">El dies a quo no computa. El plazo empieza el día siguiente.</span></div></div>
+    </div>
+    <div id="conc-s" style="display:none">
+      <div class="tog-row" id="conc-row" onclick="onConcClick(event)">
+        <span class="tw"><input type="checkbox" id="con-c"><span class="tsl"></span></span>
+        <span class="tl-wrap-txt"><strong id="conc-lbl">Papeleta de conciliación previa</strong><span id="conc-sub">Activar para calcular el efecto suspensivo sobre la caducidad</span></span>
+        <i class="ti ti-chevron-down chev" id="conc-chev" aria-hidden="true"></i>
+      </div>
+      <div class="conc-panel" id="conc-f">
+        <div class="g2" style="margin-bottom:12px">
+          <div class="fgroup"><label class="flabel" id="lbl-pap">Fecha presentación papeleta</label><input type="date" id="f-pap" style="background:#fff!important"></div>
+          <div class="fgroup"><label class="flabel">Fecha acto conciliación (si celebrado)</label><input type="date" id="f-conc" style="background:#fff!important"></div>
+        </div>
+        <div class="cw" style="margin-top:0"><i class="ti ti-gavel" aria-hidden="true"></i><span id="conc-note">La papeleta <strong>suspende</strong> la caducidad. Se reanuda al día siguiente del acto o al siguiente hábil tras 15 días hábiles desde la papeleta. Si el acto se celebra fuera de ese plazo, la reanudación ya se había producido (STS 13/11/2024).</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="btn-calc" onclick="calcular()">
+  <i class="ti ti-calculator" style="font-size:20px" aria-hidden="true"></i>
+  Calcular plazo
+</button>
+
+<div id="res"></div>
+<div class="footer-note">Herramienta orientativa. Verificar festivos locales y normativa vigente. No constituye asesoramiento jurídico.</div>
+</div>
+
+<script>
+const FN={2023:['2023-01-01','2023-01-06','2023-04-07','2023-05-01','2023-08-15','2023-10-12','2023-11-01','2023-12-06','2023-12-08','2023-12-25'],2024:['2024-01-01','2024-01-06','2024-03-29','2024-05-01','2024-08-15','2024-10-12','2024-11-01','2024-12-06','2024-12-09','2024-12-25'],2025:['2025-01-01','2025-01-06','2025-04-18','2025-05-01','2025-08-15','2025-10-13','2025-11-01','2025-12-06','2025-12-08','2025-12-25'],2026:['2026-01-01','2026-01-06','2026-04-03','2026-05-01','2026-08-15','2026-10-12','2026-11-02','2026-12-07','2026-12-08','2026-12-25'],2027:['2027-01-01','2027-01-06','2027-03-26','2027-05-01','2027-08-15','2027-10-12','2027-11-01','2027-12-06','2027-12-08','2027-12-25']};
+const FC={nac:{},and:{2023:['2023-02-28','2023-04-06'],2024:['2024-02-28','2024-03-28'],2025:['2025-02-28','2025-04-17'],2026:['2026-02-28','2026-04-02'],2027:['2027-02-28','2027-03-25']},ara:{2023:['2023-04-06','2023-04-23'],2024:['2024-03-28','2024-04-23'],2025:['2025-04-17','2025-04-23'],2026:['2026-04-02','2026-04-23'],2027:['2027-03-25','2027-04-23']},ast:{2023:['2023-04-06','2023-09-08'],2024:['2024-03-28','2024-09-08'],2025:['2025-04-17','2025-09-08'],2026:['2026-04-02','2026-09-08'],2027:['2027-03-25','2027-09-08']},bal:{2023:['2023-03-01','2023-04-06','2023-04-10','2023-12-26'],2024:['2024-03-01','2024-03-28','2024-04-01','2024-12-26'],2025:['2025-03-03','2025-04-17','2025-04-21','2025-12-26'],2026:['2026-03-02','2026-04-02','2026-04-06','2026-12-26'],2027:['2027-03-01','2027-03-25','2027-03-29','2027-12-27']},can:{2023:['2023-04-06','2023-05-30'],2024:['2024-03-28','2024-05-30'],2025:['2025-04-17','2025-05-30'],2026:['2026-04-02','2026-05-30'],2027:['2027-03-25','2027-05-30']},ctb:{2023:['2023-04-06','2023-07-28'],2024:['2024-03-28','2024-07-28'],2025:['2025-04-17','2025-07-28'],2026:['2026-04-02','2026-07-28'],2027:['2027-03-25','2027-07-28']},clm:{2023:['2023-04-06','2023-05-31'],2024:['2024-03-28','2024-05-31'],2025:['2025-04-17','2025-05-31'],2026:['2026-04-02','2026-06-01'],2027:['2027-03-25','2027-05-31']},cyl:{2023:['2023-04-06','2023-04-23'],2024:['2024-03-28','2024-04-23'],2025:['2025-04-17','2025-04-23'],2026:['2026-04-02','2026-04-23'],2027:['2027-03-25','2027-04-23']},cat:{2023:['2023-04-10','2023-06-24','2023-09-11','2023-09-25','2023-12-26'],2024:['2024-04-01','2024-06-24','2024-09-11','2024-09-24','2024-12-26'],2025:['2025-04-21','2025-06-24','2025-09-11','2025-09-24','2025-12-26'],2026:['2026-04-06','2026-06-24','2026-09-11','2026-09-24','2026-12-26'],2027:['2027-03-29','2027-06-24','2027-09-13','2027-09-24','2027-12-27']},ext:{2023:['2023-04-06','2023-09-08'],2024:['2024-03-28','2024-09-08'],2025:['2025-04-17','2025-09-08'],2026:['2026-04-02','2026-09-08'],2027:['2027-03-25','2027-09-08']},gal:{2023:['2023-04-06','2023-07-25'],2024:['2024-03-28','2024-07-25'],2025:['2025-04-17','2025-07-25'],2026:['2026-04-02','2026-07-25'],2027:['2027-03-25','2027-07-26']},rio:{2023:['2023-04-06','2023-06-09'],2024:['2024-03-28','2024-06-11'],2025:['2025-04-17','2025-06-09'],2026:['2026-04-02','2026-06-09'],2027:['2027-03-25','2027-06-09']},mad:{2023:['2023-04-06','2023-05-02','2023-05-15'],2024:['2024-03-28','2024-05-02','2024-05-15'],2025:['2025-04-17','2025-05-02','2025-05-15'],2026:['2026-04-02','2026-05-04','2026-05-15'],2027:['2027-03-25','2027-05-03','2027-05-17']},mur:{2023:['2023-04-06','2023-06-09'],2024:['2024-03-28','2024-06-11'],2025:['2025-04-17','2025-06-09'],2026:['2026-04-02','2026-06-09'],2027:['2027-03-25','2027-06-09']},nav:{2023:['2023-04-06','2023-04-10','2023-07-07'],2024:['2024-03-28','2024-04-01','2024-07-07'],2025:['2025-04-17','2025-04-21','2025-07-07'],2026:['2026-04-02','2026-04-06','2026-07-07'],2027:['2027-03-25','2027-03-29','2027-07-07']},pvk:{2023:['2023-04-06','2023-07-25','2023-10-25'],2024:['2024-03-28','2024-07-25','2024-10-25'],2025:['2025-04-17','2025-07-25','2025-10-25'],2026:['2026-04-02','2026-07-25','2026-10-26'],2027:['2027-03-25','2027-07-26','2027-10-25']},val:{2023:['2023-03-19','2023-04-06','2023-04-10','2023-10-09'],2024:['2024-03-19','2024-03-28','2024-04-01','2024-10-09'],2025:['2025-03-19','2025-04-17','2025-04-21','2025-10-09'],2026:['2026-03-19','2026-04-02','2026-04-06','2026-10-09'],2027:['2027-03-19','2027-03-25','2027-03-29','2027-10-11']}};
+const MUN={'Palma de Mallorca':{cc:'bal',f:['2023-01-20','2023-02-16','2024-01-20','2024-02-08','2025-01-20','2025-02-27','2026-01-20','2026-02-12','2027-01-20','2027-02-04']},'Manacor':{cc:'bal',f:['2026-06-29','2026-09-08']},'Eivissa (Ibiza)':{cc:'bal',f:['2026-08-05','2026-12-27']},'Maó (Menorca)':{cc:'bal',f:['2026-09-08','2026-09-14']},'Inca':{cc:'bal',f:['2026-01-17','2026-11-19']},'Calvià':{cc:'bal',f:['2026-06-24','2026-07-16']},'Ciutadella':{cc:'bal',f:['2026-06-22','2026-06-25']},'Llucmajor':{cc:'bal',f:['2026-09-28','2026-09-29']},'Marratxí':{cc:'bal',f:['2026-05-25','2026-07-25']},'Felanitx':{cc:'bal',f:['2026-08-28','2026-10-02']},'Sevilla':{cc:'and',f:['2026-05-30','2026-09-08']},'Málaga':{cc:'and',f:['2026-08-19','2026-10-17']},'Córdoba':{cc:'and',f:['2026-06-04','2026-09-07']},'Granada':{cc:'and',f:['2026-01-02','2026-06-04']},'Almería':{cc:'and',f:['2026-08-24','2026-12-26']},'Cádiz':{cc:'and',f:['2026-10-07','2026-11-30']},'Huelva':{cc:'and',f:['2026-08-03','2026-09-08']},'Jaén':{cc:'and',f:['2026-06-04','2026-10-19']},'Jerez de la Frontera':{cc:'and',f:['2026-09-08','2026-09-09']},'Algeciras':{cc:'and',f:['2026-06-15','2026-09-08']},'Marbella':{cc:'and',f:['2026-06-11','2026-06-15']},'Zaragoza':{cc:'ara',f:['2026-01-22','2026-10-02']},'Huesca':{cc:'ara',f:['2026-08-10','2026-08-17']},'Teruel':{cc:'ara',f:['2026-07-01','2026-07-07']},'Oviedo':{cc:'ast',f:['2026-09-21','2026-10-19']},'Gijón':{cc:'ast',f:['2026-08-15','2026-08-16']},'Avilés':{cc:'ast',f:['2026-08-15','2026-09-08']},'Santander':{cc:'ctb',f:['2026-07-25','2026-09-08']},'Albacete':{cc:'clm',f:['2026-09-07','2026-09-09']},'Ciudad Real':{cc:'clm',f:['2026-08-17','2026-09-08']},'Cuenca':{cc:'clm',f:['2026-06-25','2026-09-18']},'Guadalajara':{cc:'clm',f:['2026-02-06','2026-09-08']},'Toledo':{cc:'clm',f:['2026-08-19','2026-09-07']},'Valladolid':{cc:'cyl',f:['2026-09-08','2026-09-16']},'Burgos':{cc:'cyl',f:['2026-06-29','2026-06-30']},'Salamanca':{cc:'cyl',f:['2026-09-08','2026-09-15']},'León':{cc:'cyl',f:['2026-06-24','2026-10-05']},'Soria':{cc:'cyl',f:['2026-09-24','2026-10-01']},'Segovia':{cc:'cyl',f:['2026-06-24','2026-09-26']},'Zamora':{cc:'cyl',f:['2026-06-24','2026-09-07']},'Ávila':{cc:'cyl',f:['2026-10-15','2026-10-16']},'Palencia':{cc:'cyl',f:['2026-09-01','2026-09-08']},'Barcelona':{cc:'cat',f:['2026-04-23','2026-09-24']},'L\'Hospitalet de Llobregat':{cc:'cat',f:['2026-06-13','2026-10-05']},'Badalona':{cc:'cat',f:['2026-07-25','2026-10-05']},'Sabadell':{cc:'cat',f:['2026-10-08','2026-12-09']},'Terrassa':{cc:'cat',f:['2026-07-28','2026-10-05']},'Tarragona':{cc:'cat',f:['2026-09-23','2026-10-26']},'Lleida':{cc:'cat',f:['2026-05-11','2026-09-29']},'Girona':{cc:'cat',f:['2026-10-29','2026-11-02']},'Reus':{cc:'cat',f:['2026-06-29','2026-10-23']},'Mérida':{cc:'ext',f:['2026-02-06','2026-12-04']},'Badajoz':{cc:'ext',f:['2026-06-24','2026-08-24']},'Cáceres':{cc:'ext',f:['2026-04-23','2026-06-01']},'A Coruña':{cc:'gal',f:['2026-08-02','2026-10-05']},'Vigo':{cc:'gal',f:['2026-08-15','2026-10-26']},'Santiago de Compostela':{cc:'gal',f:['2026-08-16','2026-08-25']},'Ourense':{cc:'gal',f:['2026-06-04','2026-09-14']},'Lugo':{cc:'gal',f:['2026-06-27','2026-09-15']},'Pontevedra':{cc:'gal',f:['2026-08-08','2026-09-07']},'Logroño':{cc:'rio',f:['2026-06-11','2026-09-21']},'Madrid':{cc:'mad',f:['2024-05-15','2024-11-09','2025-05-15','2025-11-09','2026-05-15','2026-11-09','2027-05-15','2027-11-09']},'Móstoles':{cc:'mad',f:['2026-09-08','2026-10-05']},'Alcalá de Henares':{cc:'mad',f:['2026-04-23','2026-10-09']},'Fuenlabrada':{cc:'mad',f:['2026-09-14','2026-09-15']},'Leganés':{cc:'mad',f:['2026-09-08','2026-09-14']},'Getafe':{cc:'mad',f:['2026-08-10','2026-10-05']},'Alcorcón':{cc:'mad',f:['2026-09-08','2026-10-05']},'Torrejón de Ardoz':{cc:'mad',f:['2026-06-29','2026-09-21']},'Parla':{cc:'mad',f:['2026-09-08','2026-09-15']},'Murcia':{cc:'mur',f:['2026-01-17','2026-09-08']},'Cartagena':{cc:'mur',f:['2026-04-15','2026-09-08']},'Lorca':{cc:'mur',f:['2026-09-07','2026-09-08']},'Pamplona':{cc:'nav',f:['2026-07-06','2026-07-07']},'Tudela':{cc:'nav',f:['2026-07-24','2026-07-28']},'Bilbao':{cc:'pvk',f:['2026-07-31','2026-08-25']},'Vitoria-Gasteiz':{cc:'pvk',f:['2026-08-04','2026-08-05']},'Donostia-San Sebastián':{cc:'pvk',f:['2026-01-19','2026-01-20']},'Barakaldo':{cc:'pvk',f:['2026-06-29','2026-07-02']},'Getxo':{cc:'pvk',f:['2026-07-30','2026-08-31']},'Valencia':{cc:'val',f:['2026-04-22','2026-07-09']},'Alicante':{cc:'val',f:['2026-06-24','2026-10-28']},'Castellón de la Plana':{cc:'val',f:['2026-03-20','2026-06-17']},'Elche':{cc:'val',f:['2026-08-14','2026-08-15']},'Torrent':{cc:'val',f:['2026-09-21','2026-10-09']},'Las Palmas de Gran Canaria':{cc:'can',f:['2026-06-04','2026-09-08']},'Santa Cruz de Tenerife':{cc:'can',f:['2026-02-26','2026-09-07']},'San Cristóbal de La Laguna':{cc:'can',f:['2026-05-30','2026-07-03']},'Telde':{cc:'can',f:['2026-09-08','2026-10-02']}};
+const PROCS={despido:{dias:20,tip:'hab',ago:true,nav:true,conc:true,lbl:'Fecha efectiva del despido / comunicación',ref:'ET art.59.3; LRJS art.65.1 y 103 (LO 1/2025)',info:'<strong>Caducidad 20 días hábiles.</strong> Agosto y navidades hábiles. La papeleta <strong>suspende</strong> la caducidad.',tipo:'cad'},ext50:{dias:20,tip:'hab',ago:true,nav:true,conc:true,lbl:'Fecha de la extinción',ref:'ET art.50 y 59.3',info:'<strong>Caducidad 20 días hábiles.</strong> Mismo régimen que la acción de despido.',tipo:'cad'},msct:{dias:20,tip:'hab',ago:true,nav:true,conc:false,lbl:'Fecha notificación de la medida',ref:'ET art.40, 41',info:'<strong>Caducidad 20 días hábiles.</strong> Agosto y navidades hábiles.',tipo:'cad'},altamed:{dias:20,tip:'hab',ago:true,nav:true,conc:false,lbl:'Fecha notificación del alta médica',ref:'LRJS art.140',info:'<strong>Caducidad 20 días hábiles.</strong> Agosto y navidades hábiles.',tipo:'cad'},vacac:{dias:20,tip:'hab',ago:true,nav:true,conc:false,lbl:'Fecha del conflicto',ref:'ET art.38',info:'<strong>Caducidad 20 días hábiles.</strong> Agosto y navidades hábiles.',tipo:'cad'},tutela:{dias:20,tip:'hab',ago:true,nav:true,conc:false,lbl:'Fecha del hecho lesivo o despido',ref:'LRJS art.177 ss.',info:'<strong>Caducidad 20 días hábiles.</strong> Agosto y navidades hábiles.',tipo:'cad'},cc:{dias:20,tip:'hab',ago:true,nav:true,conc:false,lbl:'Fecha del hecho generador',ref:'LRJS art.153 ss.',info:'<strong>Caducidad 20 días hábiles.</strong> Agosto y navidades hábiles.',tipo:'cad'},conv:{dias:20,tip:'hab',ago:true,nav:true,conc:false,lbl:'Fecha de publicación del convenio',ref:'LRJS art.163 ss.',info:'<strong>Caducidad 20 días hábiles.</strong> Agosto y navidades hábiles.',tipo:'cad'},sancion:{dias:20,tip:'hab',ago:false,nav:false,conc:true,lbl:'Fecha comunicación de la sanción',ref:'ET art.59.3',info:'<strong>Caducidad 20 días hábiles.</strong> Agosto INHÁBIL.',tipo:'cad'},segsoc:{dias:30,tip:'hab',ago:false,nav:false,conc:false,lbl:'Fecha notificación resolución denegatoria',ref:'LRJS art.71',info:'<strong>Caducidad 30 días hábiles.</strong> Agosto INHÁBIL.',tipo:'cad'},cantidad:{dias:1,tip:'nat',ago:false,nav:false,conc:true,lbl:'Fecha del devengo del crédito',ref:'ET art.59.1 y 59.2; CC art.5',info:'<strong>Prescripción 1 año natural.</strong> La papeleta <strong>interrumpe</strong> (no suspende) la prescripción: reinicia el año completo desde el acto o desde la papeleta si no hay acto (ET art.59.2).',tipo:'pres'},supl_a:{dias:5,tip:'hab',ago:false,nav:false,conc:false,lbl:'Fecha notificación sentencia de instancia',ref:'LRJS art.194.1',info:'<strong>5 días hábiles</strong> para el anuncio del recurso de suplicación.',tipo:'cad'},supl_f:{dias:10,tip:'hab',ago:false,nav:false,conc:false,lbl:'Fecha notificación diligencia LAJ',ref:'LRJS art.196.2',info:'<strong>10 días hábiles</strong> desde recepción del expediente en el TSJ.',tipo:'cad'},casac:{dias:10,tip:'hab',ago:false,nav:false,conc:false,lbl:'Fecha notificación sentencia del TSJ',ref:'LRJS art.221.1',info:'<strong>10 días hábiles</strong> para preparar recurso de casación.',tipo:'cad'},custom:{dias:null,tip:'hab',ago:false,nav:false,conc:false,lbl:'Fecha inicial (dies a quo)',ref:'Personalizado',info:'Configure los parámetros según la norma aplicable.',tipo:'cad'}};
+const MES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const CNN={bal:'Illes Balears',and:'Andalucía',ara:'Aragón',ast:'Asturias',can:'Canarias',ctb:'Cantabria',clm:'Castilla-La Mancha',cyl:'Castilla y León',cat:'Cataluña',ext:'Extremadura',gal:'Galicia',rio:'La Rioja',mad:'Comunidad de Madrid',mur:'Región de Murcia',nav:'Navarra',pvk:'País Vasco',val:'Comunitat Valenciana',nac:'Nacional'};
+let festLoc=[];
+
+(function(){const sel=document.getElementById('mun');const byCCAA={};Object.entries(MUN).forEach(([k,v])=>{if(!byCCAA[v.cc])byCCAA[v.cc]=[];byCCAA[v.cc].push(k)});['bal','and','ara','ast','can','ctb','clm','cyl','cat','ext','gal','rio','mad','mur','nav','pvk','val'].forEach(cc=>{if(!byCCAA[cc])return;const og=document.createElement('optgroup');og.label=CNN[cc];byCCAA[cc].sort().forEach(n=>{const o=document.createElement('option');o.value=n;o.textContent=n;og.appendChild(o)});sel.appendChild(og)})})();
+
+function pD(s){const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)}
+function fmtS(d){return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function fmtD(s){const d=pD(s);return`${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`}
+function fmtL(s){const d=pD(s);const dn=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];return`${dn[d.getDay()]} ${d.getDate()} de ${MES[d.getMonth()]} de ${d.getFullYear()}`}
+function addD(d,n=1){const r=new Date(d.getTime());r.setDate(r.getDate()+n);return r}
+function diffDays(a,b){return Math.round((b.getTime()-a.getTime())/864e5)}
+function isWk(d){const w=d.getDay();return w===0||w===6}
+function isNac(s,y){return(FN[y]||[]).includes(s)}
+function isCCA(s,cc,y){return((FC[cc]||{})[y]||[]).includes(s)}
+function isLoc(s){return festLoc.some(f=>f.d===s)}
+function isAgo(d){return d.getMonth()===7}
+function isNav(d){const m=d.getMonth(),dd=d.getDate();return(m===11&&dd>=24)||(m===0&&dd<=6)}
+function isH(d,cfg){if(isWk(d))return false;const s=fmtS(d),y=d.getFullYear();if(isNac(s,y)||isCCA(s,cfg.cc,y)||isLoc(s))return false;if(!cfg.ago&&isAgo(d))return false;if(!cfg.nav&&isNav(d))return false;return true}
+function why(d,cfg){const s=fmtS(d),y=d.getFullYear(),w=d.getDay();if(w===6)return'Sábado';if(w===0)return'Domingo';if(isNac(s,y))return'Festivo nacional';if(isCCA(s,cfg.cc,y))return'Festivo CCAA';if(isLoc(s))return'Festivo local';if(!cfg.ago&&isAgo(d))return'Agosto (inhábil)';if(!cfg.nav&&isNav(d))return'Período navideño';return'Inhábil'}
+function nxtH(d,cfg){let r=addD(d,1),s=0;while(!isH(r,cfg)&&s++<20)r=addD(r,1);return r}
+function calc15(pap,cfg){let d=addD(pap,1),c=0,s=0;while(c<15&&s++<120){if(isH(d,cfg))c++;if(c<15)d=addD(d,1)}return d}
+
+function onPC(){
+  const v=document.getElementById('proc').value;
+  const isPres=v&&PROCS[v]?.tipo==='pres';
+  document.getElementById('pinfo').style.display=v?'flex':'none';
+  if(v)document.getElementById('pinfo-t').innerHTML=PROCS[v].info;
+  document.getElementById('lbl-i').textContent=v?PROCS[v].lbl:'Fecha del hecho generador (dies a quo)';
+  document.getElementById('ini-note').textContent=isPres?'El día del devengo no computa. Prescripción de 1 año natural desde esa fecha.':'El dies a quo no computa. El plazo empieza el día siguiente.';
+  document.getElementById('conc-s').style.display=(v&&PROCS[v].conc)?'block':'none';
+  document.getElementById('cust-c').style.display=v==='custom'?'block':'none';
+  document.getElementById('conc-lbl').textContent=isPres?'Papeleta de conciliación / reclamación extrajudicial':'Papeleta de conciliación previa';
+  document.getElementById('conc-sub').textContent=isPres?'Activar para calcular la interrupción de la prescripción':'Activar para calcular el efecto suspensivo sobre la caducidad';
+  document.getElementById('conc-note').innerHTML=isPres
+    ?'La papeleta <strong>interrumpe</strong> la prescripción (ET art.59.2): el año completo reinicia desde el acto de conciliación, o desde la papeleta si no hay acto. Distinto de caducidad: aquí no se suspende, sino que se reinicia.'
+    :'La papeleta <strong>suspende</strong> la caducidad. Se reanuda al día siguiente del acto o al siguiente hábil tras 15 días hábiles desde la papeleta. Si el acto se celebra fuera de ese plazo, la reanudación ya se había producido (STS 13/11/2024).';
+  if(v!=='custom'){const cb=document.getElementById('con-c');if(cb&&cb.checked){cb.checked=false;document.getElementById('conc-f').style.display='none';document.getElementById('conc-row').classList.remove('on');document.getElementById('conc-chev').classList.remove('open')}}
+}
+function onConcClick(e){e.preventDefault();const cb=document.getElementById('con-c');cb.checked=!cb.checked;syncConc()}
+function syncConc(){const o=document.getElementById('con-c').checked;document.getElementById('conc-f').style.display=o?'block':'none';document.getElementById('conc-row').classList.toggle('on',o);document.getElementById('conc-chev').classList.toggle('open',o)}
+function onCCAAChg(){document.getElementById('mun').value='';festLoc=festLoc.filter(f=>!f.auto);document.getElementById('mun-ok').style.display='none';renderTags()}
+function onMun(){const v=document.getElementById('mun').value;const ok=document.getElementById('mun-ok');if(!v){festLoc=festLoc.filter(f=>!f.auto);ok.style.display='none';renderTags();return}const m=MUN[v];if(!m)return;document.getElementById('ccaa').value=m.cc;festLoc=festLoc.filter(f=>!f.auto);m.f.forEach(d=>{if(!festLoc.find(f=>f.d===d))festLoc.push({d,n:v,auto:true})});ok.style.display='flex';document.getElementById('mun-ok-t').innerHTML=`<strong>${m.f.length} festivos locales</strong> de ${v} cargados. Verifique con el boletín oficial.`;renderTags()}
+function addFest(){const dv=document.getElementById('nf-d').value,nv=document.getElementById('nf-n').value;if(!dv)return;if(festLoc.find(f=>f.d===dv)){alert('Festivo ya añadido.');return}festLoc.push({d:dv,n:nv||'Festivo manual',auto:false});document.getElementById('nf-d').value='';document.getElementById('nf-n').value='';renderTags()}
+function remFest(d){festLoc=festLoc.filter(f=>f.d!==d);renderTags()}
+function renderTags(){const c=document.getElementById('fest-tags');if(!festLoc.length){c.innerHTML='<span style="font-size:12px;color:#64748b">Sin festivos locales adicionales</span>';return}c.innerHTML=[...festLoc].sort((a,b)=>a.d.localeCompare(b.d)).map(f=>`<span class="${f.auto?'ftag-a':'ftag'}"><i class="ti ${f.auto?'ti-map-pin':'ti-calendar-event'}" style="font-size:12px" aria-hidden="true"></i> ${fmtD(f.d)} · ${f.n}${f.auto?' <em style="font-size:10px;opacity:.7">(auto)</em>':''}<button onclick="remFest('${f.d}')" aria-label="Eliminar">×</button></span>`).join('')}
+
+function calcular(){
+  const pv=document.getElementById('proc').value;if(!pv){alert('Seleccione el tipo de procedimiento.');return}
+  const fi=document.getElementById('f-ini').value;if(!fi){alert('Introduzca la fecha inicial.');return}
+  let p={...PROCS[pv]};
+  if(pv==='custom'){p.dias=parseInt(document.getElementById('c-d').value)||20;p.tip=document.getElementById('c-t').value;p.ago=document.getElementById('c-ago').checked;p.nav=document.getElementById('c-nav').checked;p.tipo='cad'}
+  const cc=document.getElementById('ccaa').value;const cfg={cc,ago:p.ago,nav:p.nav};const dIni=pD(fi);
+  let sPap=null,sConc=null;
+  if(p.conc&&document.getElementById('con-c')?.checked){sPap=document.getElementById('f-pap').value;sConc=document.getElementById('f-conc').value||null;if(!sPap){alert('Introduzca la fecha de la papeleta.');return}}
+  if(p.tip==='nat'){renderNat(p,fi,dIni,sPap,sConc);return}
+  const r=calcH({dIni,dias:p.dias,cfg,conc:!!sPap,sPap,sConc});
+  renderRes(r,p,fi,sPap,sConc,cfg);
+}
+
+function calcH({dIni,dias,cfg,conc,sPap,sConc}){
+  const entries=[];let cnt=0,suspS=null,suspE=null,lim15=null;
+  if(conc&&sPap){suspS=pD(sPap);lim15=calc15(suspS,cfg);if(sConc){const dC=pD(sConc);suspE=dC<=lim15?addD(dC,1):nxtH(lim15,cfg)}else suspE=nxtH(lim15,cfg);if(suspE<=suspS)suspE=addD(suspS,1)}
+  entries.push({s:fmtS(dIni),t:'daq',lbl:'Dies a quo (no computa)',cnt:0});
+  let cur=addD(dIni,1),iter=0;
+  while(cnt<dias&&iter++<500){
+    const ds=fmtS(cur);const inS=suspS&&suspE&&cur>=suspS&&cur<suspE;
+    if(inS)entries.push({s:ds,t:'sus',lbl:ds===fmtS(suspS)?'Papeleta conciliación (inicio suspensión)':'Suspensión por conciliación',cnt});
+    else if(isH(cur,cfg)){cnt++;entries.push({s:ds,t:'hab',lbl:`Día hábil n.º ${cnt}`,cnt})}
+    else entries.push({s:ds,t:'inh',lbl:why(cur,cfg),cnt});
+    cur=addD(cur,1);
+  }
+  const last=entries.filter(e=>e.t==='hab').pop();if(last)last.t='ddl';
+  const ddl=entries.find(e=>e.t==='ddl');const grace=ddl?fmtS(nxtH(pD(ddl.s),cfg)):null;
+  let preCnt=0,postCnt=0;
+  if(suspS&&suspE){const sp=pD(fmtS(suspS)),se=pD(fmtS(suspE));preCnt=entries.filter(e=>e.t==='hab'&&pD(e.s)<sp).length;postCnt=entries.filter(e=>(e.t==='hab'||e.t==='ddl')&&pD(e.s)>=se).length}
+  return{entries,ddl:ddl?.s,grace,cnt,suspS:suspS?fmtS(suspS):null,suspE:suspE?fmtS(suspE):null,lim15:lim15?fmtS(lim15):null,preCnt,postCnt};
+}
+
+function renderNat(p,fi,dIni,sPap,sConc){
+  const origEnd=new Date(dIni.getTime());origEnd.setFullYear(origEnd.getFullYear()+1);const origEndS=fmtS(origEnd);
+  if(!sPap){
+    document.getElementById('res').innerHTML=`<div class="res-card"><div class="res-ban pres"><div class="res-eyebrow">Prescripción 1 año natural — sin interrupción</div><div class="res-date">📅 ${fmtL(origEndS)}</div><div class="res-sub">Cómputo de fecha a fecha (CC art.5) · sin descontar inhábiles</div><div class="chips"><div class="chip">Devengo<strong>${fmtD(fi)}</strong></div><div class="chip">Vence<strong>${fmtD(origEndS)}</strong></div></div></div><div class="res-body"><div class="cw" style="margin-top:0"><i class="ti ti-refresh-alert" aria-hidden="true"></i><span>La prescripción se <strong>interrumpe y reinicia</strong> con: papeleta de conciliación, reconocimiento de deuda, o demanda (ET art.59.2).</span></div><div class="ref-b"><strong>${p.ref}</strong><br>${p.info}</div></div></div>`;
+    document.getElementById('res').style.display='block';document.getElementById('res').scrollIntoView({behavior:'smooth',block:'start'});return;
+  }
+  const dPap=pD(sPap),daysToP=diffDays(dIni,dPap),papOK=dPap<=origEnd;
+  let finalD,finalFrom,finalFromLbl,step2='';
+  if(sConc){
+    const dConc=pD(sConc),newFromPap=new Date(dPap.getTime());newFromPap.setFullYear(newFromPap.getFullYear()+1);
+    const cOK=dConc<=newFromPap;
+    finalD=new Date(dConc.getTime());finalD.setFullYear(finalD.getFullYear()+1);finalFrom=sConc;finalFromLbl='acto de conciliación';
+    step2=`<div class="srow"><div class="sdot ${cOK?'sok':'se'}"><i class="ti ti-gavel" aria-hidden="true"></i></div><div class="srow-body"><strong>Acto de conciliación: ${fmtD(sConc)}</strong><span class="badge ${cOK?'bok':'be'}">${cOK?'dentro del nuevo plazo':'⚠ fuera del nuevo plazo'}</span><br>${diffDays(dPap,dConc)} días desde la papeleta. Nueva interrupción: prescripción reinicia completamente desde esta fecha.</div></div>`;
+  } else {
+    finalD=new Date(dPap.getTime());finalD.setFullYear(finalD.getFullYear()+1);finalFrom=sPap;finalFromLbl='papeleta de conciliación';
+  }
+  const finalDS=fmtS(finalD);
+  const pct=Math.min(97,Math.max(3,Math.round(daysToP/365*100)));
+  const warn=!papOK?`<div class="ce" style="margin-top:0"><i class="ti ti-alert-circle" aria-hidden="true"></i><span><strong>ATENCIÓN:</strong> la papeleta se presentó el ${fmtD(sPap)}, DESPUÉS del vencimiento de la prescripción original (${fmtD(origEndS)}). La interrupción no habría surtido efecto.</span></div>`:'';
+  document.getElementById('res').innerHTML=`<div class="res-card">
+    <div class="res-ban pres"><div class="res-eyebrow">Prescripción interrumpida — nuevo vencimiento</div><div class="res-date">📅 ${fmtL(finalDS)}</div><div class="res-sub">1 año desde ${finalFromLbl}: ${fmtD(finalFrom)}</div><div class="chips"><div class="chip">Devengo<strong>${fmtD(fi)}</strong></div><div class="chip">Papeleta<strong>${fmtD(sPap)}</strong></div>${sConc?`<div class="chip">Acto<strong>${fmtD(sConc)}</strong></div>`:''}<div class="chip">Nuevo vto.<strong>${fmtD(finalDS)}</strong></div></div></div>
+    <div class="res-body">
+      ${warn}
+      <div style="font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;margin-top:${warn?'10':'0'}px">Año original (${fmtD(fi)} → ${fmtD(origEndS)})</div>
+      <div class="presc-tl"><div class="p-seg" style="left:0;width:${pct}%;background:#fee2e2;color:#b91c1c">${daysToP}d consumidos</div><div style="position:absolute;left:${pct}%;top:0;height:100%;width:3px;background:#d97706"></div><div class="p-seg" style="left:${pct+1}%;right:0;color:#64748b">${365-daysToP}d restantes (interrumpidos)</div></div>
+      <div class="step-seq">
+        <div class="srow" style="padding-top:0"><div class="sdot sn"><i class="ti ti-calendar" aria-hidden="true"></i></div><div class="srow-body"><strong>Devengo: ${fmtD(fi)}</strong>Prescripción original vencería el ${fmtD(origEndS)}. Días hasta la papeleta: <strong>${daysToP}</strong> (${Math.round(daysToP/3.65)}% del año).</div></div>
+        <div class="srow"><div class="sdot sw"><i class="ti ti-file-text" aria-hidden="true"></i></div><div class="srow-body"><strong>Papeleta: ${fmtD(sPap)}</strong><span class="badge ${papOK?'bok':'be'}">${papOK?'dentro del plazo':'fuera de plazo'}</span><br>INTERRUPCIÓN (ET art.59.2). El año completo reinicia desde ${sConc?'el acto':'esta fecha'}.</div></div>
+        ${step2}
+        <div class="srow"><div class="sdot sok"><i class="ti ti-calendar-check" aria-hidden="true"></i></div><div class="srow-body"><strong>Nuevo vencimiento: ${fmtD(finalDS)}</strong><span class="badge bok">+1 año desde ${fmtD(finalFrom)}</span><br>Nueva interrupción (papeleta, demanda) reiniciaría otro año completo.</div></div>
+      </div>
+      <div class="ref-b"><strong>${p.ref}</strong><br>${p.info}</div>
+    </div>
+  </div>`;
+  document.getElementById('res').style.display='block';document.getElementById('res').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function renderRes(r,p,fi,sPap,sConc,cfg){
+  if(!r.ddl){document.getElementById('res').innerHTML='<div class="res-card"><div class="res-body"><div class="ce" style="margin-top:0"><i class="ti ti-x" aria-hidden="true"></i><span>No se pudo calcular. Verifique los datos.</span></div></div></div>';document.getElementById('res').style.display='block';return}
+  const byM={};r.entries.forEach(e=>{const k=e.s.substring(0,7);if(!byM[k])byM[k]=[];byM[k].push(e)});
+  const eMap={};r.entries.forEach(e=>eMap[e.s]=e);
+  const nh=r.entries.filter(e=>e.t==='hab'||e.t==='ddl').length;
+  const ni=r.entries.filter(e=>e.t==='inh').length;
+  const ns=r.entries.filter(e=>e.t==='sus').length;
+  const DS=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  let sNote='',tline='';
+  if(r.suspS){
+    const tardio=sConc&&r.suspE!==fmtS(addD(pD(sConc),1))&&r.suspE!==fmtS(nxtH(pD(sConc),cfg));
+    sNote=`<div class="cw" style="margin-top:0"><i class="ti ti-gavel" aria-hidden="true"></i><span>Suspensión: desde <strong>${fmtD(r.suspS)}</strong> (papeleta) · Límite 15 días hábiles: <strong>${fmtD(r.lim15)}</strong>.${!sConc?' Acto no celebrado → reanudación el <strong>'+fmtD(r.suspE)+'</strong> (STS 13/11/2024).':tardio?' Acto el <strong>'+fmtD(sConc)+'</strong> fuera del plazo → reanudación ya producida el <strong>'+fmtD(r.suspE)+'</strong> (STS 13/11/2024).':' Acto el <strong>'+fmtD(sConc)+'</strong> dentro del plazo → reanudación el <strong>'+fmtD(r.suspE)+'</strong>.'}</span></div>`;
+    if(p.dias){
+      const pre=r.preCnt||0,post=r.postCnt||0,rem=Math.max(0,p.dias-pre-post);
+      tline=`<div style="margin-top:12px"><div style="font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Desglose de la caducidad (${p.dias} días hábiles)</div><div class="tl-bar"><div class="tl-seg" style="flex:${Math.max(pre,.5)};background:#16a34a" title="${pre} días antes de papeleta"></div><div class="tl-seg" style="flex:${Math.max(ns,.5)};background:#fcd34d" title="${ns} días en suspensión"></div><div class="tl-seg" style="flex:${Math.max(post,.5)};background:#16a34a" title="${post} días tras reanudación"></div><div class="tl-seg" style="flex:${Math.max(rem,.5)};background:#e2e8f0" title="${rem} sin usar"></div></div><div class="tl-labels"><span style="color:#15803d">Antes papeleta: ${pre}d</span><span style="color:#92400e">Suspensión: ${ns}d</span><span style="color:#15803d">Tras reanudación: ${post}d</span><span>Sin usar: ${rem}d</span></div><div style="font-size:11px;margin-top:4px;color:#334155"><strong>Total consumido: ${pre+post} / ${p.dias} días hábiles</strong></div></div>`;
+    }
+  }
+  const cals=Object.entries(byM).map(([mk])=>{
+    const[y,m]=mk.split('-').map(Number);const fd=new Date(y,m-1,1),ld=new Date(y,m,0);const sdow=(fd.getDay()+6)%7;
+    let cells=['L','M','X','J','V','S','D'].map(n=>`<div class="dn">${n}</div>`).join('');
+    for(let i=0;i<sdow;i++)cells+=`<div class="dc oor"></div>`;
+    for(let d=1;d<=ld.getDate();d++){
+      const ds=`${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;const e=eMap[ds];let cls='dc',cnt='';
+      if(!e)cls+=isWk(new Date(y,m-1,d))?' wk':' oor';
+      else{cls=`dc ${e.t==='ddl'?'ddl':e.t==='daq'?'daq':e.t==='hab'?'hab':e.t==='inh'?isWk(pD(ds))?'wk':'inh':e.t==='sus'?'sus':''}`;if(e.t==='hab'||e.t==='ddl')cnt=`<span class="cn">${e.cnt}</span>`}
+      cells+=`<div class="${cls}" title="${e?e.lbl:''}">${d}${cnt}</div>`;
+    }
+    return`<div class="mcal"><div class="mcal-h">${MES[m-1].charAt(0).toUpperCase()+MES[m-1].slice(1)} ${y}</div><div class="dg">${cells}</div></div>`;
+  }).join('');
+  const rows=r.entries.map(e=>{const d=pD(e.s);const tc=e.t==='daq'?'t0':e.t==='hab'?'th':e.t==='ddl'?'td_':e.t==='inh'?'ti_':'ts_';const tl=e.t==='daq'?'Dies a quo':e.t==='hab'?'Hábil':e.t==='ddl'?'⚡ Vence':e.t==='inh'?'Inhábil':'Suspendido';return`<tr><td>${fmtD(e.s)}</td><td>${DS[d.getDay()]}</td><td><span class="tg ${tc}">${tl}</span></td><td>${(e.t==='hab'||e.t==='ddl')?e.cnt:'-'}</td><td style="font-size:10px;color:#64748b">${e.lbl}</td></tr>`}).join('');
+  document.getElementById('res').innerHTML=`<div class="res-card">
+    <div class="res-ban cad"><div class="res-eyebrow">Fecha límite — dies ad quem</div><div class="res-date">📅 ${fmtL(r.ddl)}</div><div class="res-sub">⏰ Presentación hasta las <strong>15:00 h del día hábil siguiente: ${fmtL(r.grace)}</strong></div><div class="chips"><div class="chip"><strong>${p.dias}</strong>días hábiles</div><div class="chip"><strong>${nh}</strong>hábiles</div><div class="chip"><strong>${ni}</strong>inhábiles</div>${ns>0?`<div class="chip"><strong>${ns}</strong>suspensión</div>`:''}</div></div>
+    <div class="res-body">
+      ${sNote}${tline}
+      <div class="cal-grid">${cals}</div>
+      <div class="leg"><div class="li"><div class="ls" style="outline:2px solid #2563eb;outline-offset:-1px"></div>Dies a quo</div><div class="li"><div class="ls" style="background:#dcfce7"></div>Día hábil</div><div class="li"><div class="ls" style="background:#2563eb"></div>Plazo vence</div><div class="li"><div class="ls" style="background:#fee2e2"></div>Inhábil/festivo</div><div class="li"><div class="ls" style="background:#f8fafc;border:1px solid #e2e8f0"></div>Fin de semana</div>${ns>0?'<div class="li"><div class="ls" style="background:#fef3c7"></div>Suspensión</div>':''}</div>
+      <details><summary><i class="ti ti-list-details" aria-hidden="true"></i> Ver desglose día a día (${r.entries.length} entradas)</summary><table class="btbl"><thead><tr><th>Fecha</th><th>Día</th><th>Estado</th><th>Nº</th><th>Motivo</th></tr></thead><tbody>${rows}</tbody></table></details>
+    </div>
+  </div>
+  <div class="res-card"><div class="card-hdr"><i class="ti ti-book" style="color:#64748b" aria-hidden="true"></i><span class="card-hdr-title">Referencia normativa</span></div><div class="res-body"><div class="ref-b"><strong>${p.ref}</strong><br><span style="display:block;margin-top:4px">${p.info}</span></div></div></div>`;
+  document.getElementById('res').style.display='block';document.getElementById('res').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+document.getElementById('f-ini').value=fmtS(new Date());
+renderTags();
+</script>
